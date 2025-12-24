@@ -22,7 +22,7 @@ class DedicationBanner extends StatelessWidget {
           Icon(Icons.favorite, color: Colors.white, size: 16.sp),
           8.horizontalSpace,
           Text(
-            'Welcome, Sangya Aryal!',
+            '❤️❤️❤️ Welcome, Sangya Aryal! ❤️❤️❤️',
             style: TextStyle(
               color: Colors.white,
               fontSize: 16.sp,
