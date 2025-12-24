@@ -54,21 +54,7 @@ class _ResponsivePadding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
-    double horizontalPadding;
-
-    if (screenWidth >= 1200) {
-      horizontalPadding = 120.w; // Desktop
-    } else if (screenWidth >= 768) {
-      horizontalPadding = 60.w; // Tablet
-    } else {
-      horizontalPadding = 20.w; // Mobile
-    }
-
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-      child: child,
-    );
+    // Removed horizontal padding to allow full width
+    return child;
   }
 }
