@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:portfolio_web/widgets/max_content_width.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
@@ -8,87 +9,89 @@ class ContactSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 80.h),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Get In Touch',
-            style: TextStyle(
-              fontSize: 36.sp,
-              fontWeight: FontWeight.bold,
-              color: Colors.blue.shade800,
-            ),
-          ),
-          40.verticalSpace,
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Contact Info
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Let\'s work together!',
-                      style: TextStyle(
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey.shade800,
-                      ),
-                    ),
-                    20.verticalSpace,
-                    Text(
-                      'I\'m always open to discussing new opportunities, interesting projects, or just having a chat about Flutter development.',
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        color: Colors.grey.shade600,
-                        height: 1.6,
-                      ),
-                    ),
-                    40.verticalSpace,
-                    // Contact Items
-                    _buildContactItem(Icons.email, 'cizerthapa@gmail.com'),
-                    20.verticalSpace,
-                    _buildContactItem(Icons.phone, '+977 9803561155'),
-                    20.verticalSpace,
-                    _buildContactItem(Icons.location_on, 'Kathmandu, Nepal'),
-                    40.verticalSpace,
-                    Row(
-                      children: [
-                        _buildSocialButton(Icons.code, 'GitHub'),
-                        const SizedBox(width: 15),
-                        _buildSocialButton(Icons.work, 'LinkedIn'),
-                        const SizedBox(width: 15),
-                        _buildSocialButton(Icons.chat, 'Twitter'),
-                        const SizedBox(width: 15),
-                        _buildSocialButton(Icons.article, 'Blog'),
-                      ],
-                    ),
-                  ],
-                ),
+      child: MaxContentWidth(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Get In Touch',
+              style: TextStyle(
+                fontSize: 36.sp,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue.shade800,
               ),
-              const SizedBox(width: 60),
-              // Contact Form
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.all(30),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.1),
-                        blurRadius: 30,
-                        spreadRadius: 5,
+            ),
+            40.verticalSpace,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Contact Info
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Let\'s work together!',
+                        style: TextStyle(
+                          fontSize: 24.sp,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.grey.shade800,
+                        ),
+                      ),
+                      20.verticalSpace,
+                      Text(
+                        'I\'m always open to discussing new opportunities, interesting projects, or just having a chat about Flutter development.',
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                          color: Colors.grey.shade600,
+                          height: 1.6,
+                        ),
+                      ),
+                      40.verticalSpace,
+                      // Contact Items
+                      _buildContactItem(Icons.email, 'cizerthapa@gmail.com'),
+                      20.verticalSpace,
+                      _buildContactItem(Icons.phone, '+977 9803561155'),
+                      20.verticalSpace,
+                      _buildContactItem(Icons.location_on, 'Kathmandu, Nepal'),
+                      40.verticalSpace,
+                      Row(
+                        children: [
+                          _buildSocialButton(Icons.code, 'GitHub'),
+                          const SizedBox(width: 15),
+                          _buildSocialButton(Icons.work, 'LinkedIn'),
+                          const SizedBox(width: 15),
+                          _buildSocialButton(Icons.chat, 'Twitter'),
+                          const SizedBox(width: 15),
+                          _buildSocialButton(Icons.article, 'Blog'),
+                        ],
                       ),
                     ],
                   ),
-                  child: const ContactForm(),
                 ),
-              ),
-            ],
-          ),
-        ],
+                const SizedBox(width: 60),
+                // Contact Form
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.all(30),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.1),
+                          blurRadius: 30,
+                          spreadRadius: 5,
+                        ),
+                      ],
+                    ),
+                    child: const ContactForm(),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
