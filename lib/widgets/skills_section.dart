@@ -18,7 +18,7 @@ class SkillsSection extends StatelessWidget {
     ];
 
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 80),
+      padding: EdgeInsets.symmetric(vertical: 28.h),
       child: MaxContentWidth(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +26,7 @@ class SkillsSection extends StatelessWidget {
             Text(
               'Skills & Expertise',
               style: TextStyle(
-                fontSize: 36,
+                fontSize: 36.sp,
                 fontWeight: FontWeight.bold,
                 color: Colors.blue.shade800,
               ),
