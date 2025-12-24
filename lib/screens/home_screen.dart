@@ -9,6 +9,8 @@ import 'package:portfolio_web/widgets/footer.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio_web/utils/responsive_mixin.dart';
 
+import 'package:portfolio_web/widgets/dedication_banner.dart';
+
 class HomeScreen extends StatelessWidget with ResponsiveMixin {
   const HomeScreen({super.key});
 
@@ -19,6 +21,7 @@ class HomeScreen extends StatelessWidget with ResponsiveMixin {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const DedicationBanner(),
             const Navbar(),
             const HeroSection(),
             Container(

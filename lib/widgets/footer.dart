@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
@@ -6,7 +7,7 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
+      padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 40.w),
       color: Colors.blue.shade900,
       child: Column(
         children: [
@@ -16,15 +17,15 @@ class Footer extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'Flutter Developer',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 24.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  8.verticalSpace,
                   Text(
                     'Building amazing cross-platform experiences',
                     style: TextStyle(fontSize: 16, color: Colors.blue.shade200),
@@ -34,11 +35,11 @@ class Footer extends StatelessWidget {
               Row(
                 children: [
                   _buildFooterLink('Home'),
-                  const SizedBox(width: 30),
+                  30.horizontalSpace,
                   _buildFooterLink('About'),
-                  const SizedBox(width: 30),
+                  30.horizontalSpace,
                   _buildFooterLink('Projects'),
-                  const SizedBox(width: 30),
+                  30.horizontalSpace,
                   _buildFooterLink('Contact'),
                 ],
               ),
@@ -48,9 +49,22 @@ class Footer extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                '© ${DateTime.now().year} Cizer Thapa. All rights reserved.',
-                style: TextStyle(color: Colors.blue.shade300),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '© ${DateTime.now().year} Cizer Thapa. All rights reserved.',
+                    style: TextStyle(color: Colors.blue.shade300),
+                  ),
+                  4.verticalSpace,
+                  Text(
+                    'Dedicated to Sangya Aryal ❤️',
+                    style: TextStyle(
+                      color: Colors.blue.shade300,
+                      fontSize: 12.sp,
+                    ),
+                  ),
+                ],
               ),
               Row(
                 children: [
