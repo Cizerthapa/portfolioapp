@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio_web/services/data_service.dart';
 import 'package:portfolio_web/widgets/max_content_width.dart';
 import 'package:portfolio_web/widgets/stats_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class AboutSection extends StatelessWidget {
   const AboutSection({super.key});
@@ -67,48 +65,6 @@ class AboutSection extends StatelessWidget {
                       Text(
                         'My expertise includes state management (Provider, Bloc), Firebase integration, REST APIs, and creating responsive UIs that work flawlessly on all devices.',
                         style: TextStyle(height: 1.6),
-                      ),
-                      20.verticalSpace,
-                      StreamBuilder<String>(
-                        stream: DataService().cvUrlStream,
-                        builder: (context, snapshot) {
-                          final url = snapshot.data ?? '';
-                          return ElevatedButton.icon(
-                            onPressed: () async {
-                              if (url.isNotEmpty) {
-                                final uri = Uri.parse(url);
-                                if (await canLaunchUrl(uri)) {
-                                  await launchUrl(
-                                    uri,
-                                    mode: LaunchMode.externalApplication,
-                                  );
-                                } else {
-                                  if (context.mounted) {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text('Could not launch $url'),
-                                      ),
-                                    );
-                                  }
-                                }
-                              } else {
-                                if (context.mounted) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(
-                                      content: Text('CV URL not set'),
-                                    ),
-                                  );
-                                }
-                              }
-                            },
-                            icon: const Icon(Icons.download),
-                            label: const Text('Download CV'),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue,
-                              foregroundColor: Colors.white,
-                            ),
-                          );
-                        },
                       ),
                       30.verticalSpace,
                       // Stats
