@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:portfolio_web/services/data_service.dart';
 import 'package:portfolio_web/widgets/max_content_width.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
@@ -75,24 +77,54 @@ class HeroSection extends StatelessWidget {
                         child: const Text('View Projects'),
                       ),
                       20.horizontalSpace,
-                      OutlinedButton(
-                        onPressed: () {
-                          // Download CV
+                      StreamBuilder<String>(
+                        stream: DataService().cvUrlStream,
+                        builder: (context, snapshot) {
+                          final url = snapshot.data ?? '';
+                          return OutlinedButton(
+                            onPressed: () async {
+                              if (url.isNotEmpty) {
+                                final uri = Uri.parse(url);
+                                if (await canLaunchUrl(uri)) {
+                                  await launchUrl(
+                                    uri,
+                                    mode: LaunchMode.externalApplication,
+                                  );
+                                } else {
+                                  if (context.mounted) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('Could not launch $url'),
+                                      ),
+                                    );
+                                  }
+                                }
+                              } else {
+                                if (context.mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('CV URL not set'),
+                                    ),
+                                  );
+                                }
+                              }
+                            },
+                            style: OutlinedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 40.w,
+                                vertical: 18.h,
+                              ),
+                              side: const BorderSide(color: Colors.blue),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.r),
+                              ),
+                            ),
+                            child: Text(
+                              'Download CV',
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                          );
                         },
-                        style: OutlinedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 40.w,
-                            vertical: 18.h,
-                          ),
-                          side: const BorderSide(color: Colors.blue),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.r),
-                          ),
-                        ),
-                        child: Text(
-                          'Download CV',
-                          style: TextStyle(color: Colors.blue),
-                        ),
                       ),
                     ],
                   ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:portfolio_web/models/contact_message.dart';
+import 'package:portfolio_web/services/data_service.dart';
 import 'package:portfolio_web/widgets/max_content_width.dart';
 
 class ContactSection extends StatelessWidget {
@@ -130,10 +132,10 @@ class ContactForm extends StatefulWidget {
   const ContactForm({super.key});
 
   @override
-  _ContactFormState createState() => _ContactFormState();
+  ContactFormState createState() => ContactFormState();
 }
 
-class _ContactFormState extends State<ContactForm> {
+class ContactFormState extends State<ContactForm> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -193,15 +195,35 @@ class _ContactFormState extends State<ContactForm> {
           ),
           const SizedBox(height: 30),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               if (_formKey.currentState!.validate()) {
-                // Handle form submission
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Message sent successfully!')),
-                );
-                _nameController.clear();
-                _emailController.clear();
-                _messageController.clear();
+                try {
+                  // Handle form submission
+                  final message = ContactMessage(
+                    name: _nameController.text,
+                    email: _emailController.text,
+                    message: _messageController.text,
+                    timestamp: DateTime.now(),
+                  );
+                  await DataService().addMessage(message);
+
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Message sent successfully!'),
+                      ),
+                    );
+                    _nameController.clear();
+                    _emailController.clear();
+                    _messageController.clear();
+                  }
+                } catch (e) {
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('Error sending message: $e')),
+                    );
+                  }
+                }
               }
             },
             style: ElevatedButton.styleFrom(

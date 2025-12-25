@@ -11,7 +11,21 @@ class AboutScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: Column(children: const [Navbar(), AboutSection(), Footer()]),
+        child: Column(
+          children: [
+            Navbar(
+              onNavTap: (index) {
+                if (index == 0) {
+                  Navigator.pushReplacementNamed(context, '/');
+                } else {
+                  Navigator.pushReplacementNamed(context, '/');
+                }
+              },
+            ),
+            const AboutSection(),
+            const Footer(),
+          ],
+        ),
       ),
     );
   }
